@@ -1,0 +1,21 @@
+{
+  "accuracy": 0.9385,
+  "macro_f1": 0.9398,
+  "weighted_f1": 0.9392,
+  "top2_accuracy": 0.9538,
+  "log_loss": 0.5805,
+  "n_examples": 260,
+  "n_test": 65,
+  "classes": [
+    "Cardiology",
+    "Dermatology",
+    "ENT",
+    "Gastroenterology",
+    "General Medicine",
+    "Mental Health",
+    "Neurology",
+    "Orthopaedics",
+    "Respiratory Medicine",
+    "Women's Health"
+  ]
+}

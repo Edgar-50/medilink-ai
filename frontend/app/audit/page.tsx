@@ -1,0 +1,9 @@
+"use client";
+import {useEffect,useState} from "react";
+import {Activity,FileClock,LayoutDashboard,Search,ShieldCheck} from "lucide-react";
+import ProtectedDashboard from "@/components/ProtectedDashboard";
+import AppShell,{type NavItem} from "@/components/AppShell";
+import {getAuditEvents,type AuditEvent} from "@/lib/api";
+import {getToken} from "@/lib/auth";
+const nav:NavItem[]=[{href:"/dashboard/admin",label:"Operations",icon:LayoutDashboard},{href:"/audit",label:"Audit history",icon:FileClock}];
+export default function AuditPage(){const[rows,setRows]=useState<AuditEvent[]>([]);const[q,setQ]=useState("");useEffect(()=>{const t=getToken();if(t)getAuditEvents(t).then(setRows).catch(()=>{})},[]);const filtered=rows.filter(x=>(x.action+" "+x.resource_type+" "+x.detail).toLowerCase().includes(q.toLowerCase()));return <ProtectedDashboard requiredRole="admin">{(user,logout)=><AppShell user={user} logout={logout} nav={nav} active="/audit" title="Audit history" subtitle="Trace sensitive actions across clinical, communication and operational workflows."><section className="card"><div className="auditToolbar"><div><ShieldCheck size={18}/><span>Immutable-style activity view</span></div><label><Search size={15}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Filter events"/></label></div><div className="auditTable"><div className="auditRow auditHead"><span>Time</span><span>Action</span><span>Resource</span><span>Detail</span></div>{filtered.map(r=><div className="auditRow" key={r.id}><time>{new Date(r.created_at).toLocaleString()}</time><b>{r.action}</b><span>{r.resource_type}{r.resource_id?` #${r.resource_id}`:""}</span><p>{r.detail||"—"}</p></div>)}{!filtered.length&&<div className="emptyState"><Activity/><p>No matching events.</p></div>}</div></section></AppShell>}</ProtectedDashboard>}

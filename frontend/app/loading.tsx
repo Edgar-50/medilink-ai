@@ -1,0 +1,1 @@
+export default function Loading(){return <main className="standaloneState"><div className="stateCard"><div className="loadingPulse"/><h2>Loading MediLink…</h2><p>Preparing your workspace.</p></div></main>}

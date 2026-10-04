@@ -1,0 +1,41 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Next.js / Node
+node_modules/
+.next/
+out/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local data / model artefacts
+*.db
+backend/ml/artifacts/*.joblib
+backend/storage/uploads/*
+!backend/storage/uploads/.gitkeep
+
+# Build / temporary files
+dist/
+build/
+*.tmp
+*.temp
+typecheck-errors.txt
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
