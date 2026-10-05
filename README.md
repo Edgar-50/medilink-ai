@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/screenshots/patient-dashboard.svg" alt="MediLink AI patient dashboard" width="100%">
+<img src="docs/screenshots/medilink-patient-dashboard-full.webp" alt="MediLink AI full patient telemedicine dashboard" width="100%">
 
 <br />
 
@@ -64,13 +64,7 @@ The goal is to model a **connected healthcare system** where identity, clinical 
 
 The patient application acts as the central point for managing care.
 
-![Patient dashboard](docs/screenshots/patient-dashboard.svg)
 
-### Full patient dashboard
-
-The complete patient workspace brings together live vitals, appointments, lab results, care-team access, MediLink Watch, AI assistance, telehealth and emergency controls in a single interface.
-
-<img src="docs/screenshots/medilink-patient-dashboard-full.webp" alt="MediLink AI full patient telemedicine dashboard" width="100%">
 
 Patients can access:
 
