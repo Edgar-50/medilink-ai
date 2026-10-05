@@ -81,6 +81,91 @@ Patients can access:
 
 Rather than treating these as disconnected modules, the dashboard brings them into a single authenticated patient context.
 
+### Advanced Patient Dashboard
+
+The patient dashboard is designed as a **single operational view of the patient's care journey**. Instead of forcing users to move between separate pages for monitoring, appointments, records, AI assistance and telehealth, the dashboard keeps the most important information and actions visible in one place.
+
+```text
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           MEDILINK PATIENT DASHBOARD                        │
+├───────────────────────┬──────────────────────────────────┬───────────────────┤
+│ Navigation            │ Care Overview                    │ Immediate Actions │
+│                       │                                  │                   │
+│ Dashboard             │ Upcoming care                    │ Emergency support │
+│ AI Assistant          │ Connected vitals                 │ Book appointment  │
+│ Appointments          │ ECG / heart-rate trend           │ Start video call  │
+│ Live Care             │ Medication context               │ Message care team │
+│ Messages              │ Recent clinical events           │ Upload reports    │
+│ Doctors               │ Health insights                  │ View medications  │
+│ Health Records        │                                  │                   │
+│ MediLink Watch        ├──────────────────────────────────┼───────────────────┤
+│ Medications           │ MediLink AI Assistant            │ Clinical Context  │
+│ Lab Results           │                                  │                   │
+│ Care Plans            │ Record-grounded questions        │ Latest lab results│
+│ Emergency             │ Explain results                  │ Care team         │
+│ Settings              │ Appointment preparation          │ Appointment card  │
+│                       │ Care navigation                  │ Consultation room │
+└───────────────────────┴──────────────────────────────────┴───────────────────┘
+```
+
+#### Live health overview
+
+The dashboard can surface the latest connected-health observations in one place:
+
+| Signal | Dashboard behaviour |
+|---|---|
+| **Heart rate** | Current BPM, trend state and ECG-style history |
+| **Blood pressure** | Latest systolic/diastolic reading and recent trend |
+| **SpO₂** | Current oxygen saturation with monitoring status |
+| **Temperature** | Latest body-temperature observation |
+| **Activity** | Step/activity context from connected monitoring |
+| **Device state** | Connection status, last sync and battery/device metadata |
+| **Alerts** | Threshold and anomaly events surfaced to the patient and care team |
+
+The dashboard deliberately distinguishes **simulated development observations** from future physical-device measurements.
+
+#### Patient command centre
+
+Core patient workflows are available directly from the dashboard:
+
+- **Book appointment** — discover clinicians and move directly into booking.
+- **Start video consultation** — enter an authenticated WebRTC care room.
+- **Upload reports** — add documents to the patient's record context.
+- **View medications** — access medication history and active medication context.
+- **Connect MediLink Watch** — open the connected-health monitoring workspace.
+- **Emergency support** — expose deterministic emergency actions without placing an LLM in the decision loop.
+
+#### MediLink AI Assistant
+
+The dashboard embeds MediLink Copilot rather than sending the patient to a detached chatbot.
+
+The assistant can work against authenticated record context for questions such as:
+
+```text
+"Explain my latest lab results"
+"What medications are currently on my record?"
+"What should I prepare for my next appointment?"
+"Which specialty is most relevant to this care question?"
+"Show the record information used to answer this"
+```
+
+Where available, responses can include **record sources, highlights, suggested next steps, specialty routing and clinician matches** alongside the generated explanation.
+
+#### Care continuity
+
+The right side of the patient experience is designed around continuity rather than isolated widgets:
+
+- upcoming appointment and consultation status
+- recent laboratory results
+- care-team contacts
+- clinician messaging
+- live/video consultation entry
+- record-grounded AI support
+- emergency actions
+
+The result is a dashboard that behaves less like a static portal and more like a **patient-facing care command centre**.
+
+
 ---
 
 ## Clinician workspace
