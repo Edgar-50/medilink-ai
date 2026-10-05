@@ -4,7 +4,7 @@ import { BrainCircuit, Send, Sparkles } from "lucide-react";
 import { askRecordCopilot, type RAGResponse } from "@/lib/api";
 import { getToken } from "@/lib/auth";
 
-export default function AICopilotPanel({role}:{role:"patient"|"doctor"}){
+export default function AICopilotPanel({role="patient"}:{role?:"patient"|"doctor"}){
  const prompts=role==="doctor"?["Summarise my clinical worklist","What needs review today?","Prepare a patient handover"]:["Explain my latest lab results","Prepare me for my next appointment","Summarise my watch trends","What medicines are on my record?"];
  const [q,setQ]=useState(""); const [res,setRes]=useState<RAGResponse|null>(null); const [loading,setLoading]=useState(false); const [err,setErr]=useState("");
  async function ask(text=q){const token=getToken();if(!token||!text.trim())return;setLoading(true);setErr("");try{setRes(await askRecordCopilot(token,text));setQ("");}catch(e:any){setErr(e?.message||"Could not reach MediLink Copilot.");}finally{setLoading(false)}}
