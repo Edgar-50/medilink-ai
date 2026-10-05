@@ -1,520 +1,841 @@
-# MediLink AI
-
 <div align="center">
 
-# 🩺 MediLink AI
-### Connected care. Clinical intelligence. Remote monitoring. One platform.
+<img src="docs/screenshots/patient-dashboard.svg" alt="MediLink AI patient dashboard" width="100%">
 
-<p>
-  <strong>A full-stack healthcare engineering platform combining patient care, clinician workflows, telehealth, IoT monitoring, hospital operations, secure messaging and record-grounded AI.</strong>
-</p>
+<br />
 
-<p>
-  <a href="https://medilink-ai-eight.vercel.app"><img src="https://img.shields.io/badge/Live%20Frontend-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"></a>
-  <a href="https://medilink-ai-api.onrender.com"><img src="https://img.shields.io/badge/API-Render-46E3B7?style=for-the-badge&logo=render&logoColor=111111" alt="Render"></a>
-  <img src="https://img.shields.io/badge/Next.js-16.3.8-000000?style=for-the-badge&logo=nextdotjs" alt="Next.js">
-  <img src="https://img.shields.io/badge/FastAPI-Python-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
-  <img src="https://img.shields.io/badge/AI-Record--Grounded-7B61FF?style=for-the-badge" alt="AI">
-</p>
+# MediLink AI
 
-<p>
-  <a href="https://medilink-ai-eight.vercel.app"><b>🌐 Open MediLink</b></a>
-  &nbsp;•&nbsp;
-  <a href="https://medilink-ai-api.onrender.com/docs"><b>📚 API Docs</b></a>
-</p>
+### Healthcare systems engineering across clinical workflows, AI, telehealth and remote monitoring.
+
+**MediLink is a full-stack healthcare platform built around one idea: clinical context should not disappear when a patient moves between records, appointments, monitoring, messaging and consultation.**
+
+[![Live Platform](https://img.shields.io/badge/Live_Platform-Open-111111?style=for-the-badge&logo=vercel&logoColor=white)](https://medilink-ai-eight.vercel.app)
+[![API Documentation](https://img.shields.io/badge/API-OpenAPI-009688?style=for-the-badge&logo=swagger&logoColor=white)](https://medilink-ai-api.onrender.com/docs)
+[![Backend](https://img.shields.io/badge/Backend-Online-2ea44f?style=for-the-badge)](https://medilink-ai-api.onrender.com)
+
+<br />
+
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs)
+![TypeScript](https://img.shields.io/badge/TypeScript-React-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-ready-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![WebRTC](https://img.shields.io/badge/WebRTC-Telehealth-333333?style=flat-square&logo=webrtc)
+![WebSocket](https://img.shields.io/badge/WebSocket-Realtime-181717?style=flat-square)
+![ML](https://img.shields.io/badge/ML-Specialty_Routing-orange?style=flat-square)
+![FHIR](https://img.shields.io/badge/FHIR-R4--style-red?style=flat-square)
+
+**[Live Demo](https://medilink-ai-eight.vercel.app)** · **[API Docs](https://medilink-ai-api.onrender.com/docs)** · [Architecture](#system-architecture) · [AI & ML](#intelligence-layer) · [Run Locally](#running-locally)
 
 </div>
 
 ---
 
-> [!IMPORTANT]
-> MediLink AI is an **engineering and portfolio project**. It is **not a clinically validated medical device**, not a substitute for a clinician, and should not be used for real-world diagnosis or emergency decision-making. The platform is designed around synthetic/test data and software-engineering demonstrations.
+## What is MediLink?
+
+Healthcare software often fragments a single care journey across unrelated systems.
+
+Appointments live in one product. Records in another. Video consultations somewhere else. Remote monitoring arrives through a separate dashboard, while AI tools often operate without access to meaningful patient context.
+
+MediLink explores what happens when those capabilities are designed as parts of the same system.
+
+The platform provides separate workspaces for:
+
+| Patient | Clinician | Operations |
+|---|---|---|
+| Appointments | Patient queues | Capacity |
+| Health records | Clinical records | Patient flow |
+| Medications | Remote monitoring | Department load |
+| Laboratory results | Clinical actions | Facility status |
+| Connected vitals | Consultation rooms | Audit history |
+| Telehealth | Documentation | Platform controls |
+| Secure messaging | Referrals | AI governance |
+| MediLink Copilot | Clinical Copilot | Operational analytics |
+
+The goal is not to create another chatbot with a healthcare interface.
+
+The goal is to model a **connected healthcare system** where identity, clinical information, realtime communication, monitoring and decision-support operate against the same underlying context.
 
 ---
 
-## ✨ What is MediLink AI?
+# Platform
 
-MediLink AI is a multi-role healthcare platform designed around one idea:
+## Patient workspace
 
-> **A patient, clinician and hospital operations team should be able to move through care without losing context.**
-
-The platform brings together:
-
-- patient health records
-- doctor discovery and appointment workflows
-- secure authentication
-- clinician worklists and patient queues
-- AI-assisted care navigation
-- record-grounded patient and clinical copilots
-- telehealth video rooms
-- live/streamed wearable observations
-- medication and laboratory workflows
-- referrals and documents
-- emergency access flows
-- secure messaging
-- audit history
-- hospital operations dashboards
-- capacity and patient-flow monitoring
-- platform health and background-job controls
-- FHIR-style interoperability endpoints
-- model-registry and AI-governance surfaces
-
-The system uses a **Next.js frontend**, a **FastAPI backend**, SQLAlchemy persistence, WebSockets/WebRTC for realtime workflows, and an AI layer designed to keep retrieved records separate from generated reasoning.
-
----
-
-# 🖥️ Interface Preview
-
-## Patient command centre
-
-The patient experience combines upcoming care, connected vitals, medication context, health records and MediLink Copilot in one dashboard.
+The patient application acts as the central point for managing care.
 
 ![Patient dashboard](docs/screenshots/patient-dashboard.svg)
 
-<sub>Illustrative preview based on the current patient dashboard structure and components in the repository.</sub>
+Patients can access:
 
-### Patient experience
+- upcoming appointments
+- health records
+- medication information
+- laboratory results
+- clinical timeline events
+- uploaded documents
+- connected-health observations
+- monitoring alerts
+- clinician discovery
+- appointment booking
+- secure messaging
+- browser-based consultations
+- MediLink Copilot
+- emergency support controls
 
-| Area | What it does |
-|---|---|
-| **Dashboard** | Presents appointments, connected-health status, health insights, medication context and recent care events. |
-| **MediLink Copilot** | Helps explain record information, prepare for appointments and navigate to appropriate care pathways. |
-| **Doctor discovery** | Supports clinician search, doctor matching and appointment booking. |
-| **Health records** | Surfaces labs, medications, timeline events and uploaded documents. |
-| **MediLink Watch** | Displays connected vital signs and monitoring alerts. |
-| **Telehealth** | Creates authenticated browser-based consultation rooms. |
-| **Messages** | Provides a dedicated care-team communication workspace. |
-| **Emergency support** | Provides fast emergency actions without delegating emergency decisions to AI. |
+Rather than treating these as disconnected modules, the dashboard brings them into a single authenticated patient context.
 
 ---
 
-## Clinician command centre
-
-The doctor workspace is designed around a clinical flow:
-
-**queue → record → monitoring → care action → consultation → documentation**
+## Clinician workspace
 
 ![Doctor dashboard](docs/screenshots/doctor-dashboard.svg)
 
-<sub>Illustrative preview based on the current clinician dashboard structure and components in the repository.</sub>
+The clinician interface follows the way clinical work actually progresses:
 
-### Clinical workspace
+```text
+Patient Queue
+     ↓
+Clinical Record
+     ↓
+Remote Monitoring
+     ↓
+Care Action
+     ↓
+Consultation
+     ↓
+Clinical Documentation
+```
 
-The clinician surface includes:
+Clinicians can work with:
 
-- patient queue and scheduled consultations
-- recently active patients
-- clinical records
-- remote monitoring
-- care actions
+- scheduled consultations
+- active patient queues
+- patient histories
+- monitoring observations
 - clinical alerts
-- secure video consultation rooms
-- clinical notes
+- care actions
+- SOAP-style documentation
 - referrals
+- laboratory workflows
+- medication workflows
 - secure messaging
-- clinician worklists
-- record-grounded Clinical Copilot
+- video consultations
+- record-grounded clinical assistance
 
-The dashboard is role-protected and uses the authenticated clinician session to load appointments, patients, alerts and monitoring context.
+The authenticated clinician session determines what information and actions are available.
 
 ---
 
-## Hospital operations centre
-
-Administrators receive an operational view across service activity and capacity.
+## Hospital operations
 
 ![Admin dashboard](docs/screenshots/admin-dashboard.svg)
 
-<sub>Illustrative preview based on the current admin dashboard structure and components in the repository.</sub>
+The administrative workspace focuses on the system around clinical care rather than the individual consultation.
 
-### Operations intelligence
+It exposes operational views for:
 
-The admin dashboard includes:
-
-- patient and clinician counts
+- patient and clinician activity
 - appointment volume
-- signed clinical-note activity
-- current occupancy
-- waiting-room load
-- open appointment capacity
-- departmental workload
-- operational activity feeds
+- signed clinical notes
+- facility capacity
+- waiting-room activity
+- department workload
+- appointment availability
+- patient flow
 - care-network status
 - audit history
 - platform controls
-- model/governance surfaces
+- model and governance surfaces
+
+This layer is intended to show how clinical applications can connect to hospital-level operational intelligence rather than stopping at the patient portal.
 
 ---
 
-# 🧠 MediLink Intelligence
+# Core capabilities
 
-MediLink contains multiple intelligence layers rather than treating every AI task as the same problem.
+| Capability | Implementation |
+|---|---|
+| **Clinical records** | Patient timeline, labs, medications, documents and clinical events |
+| **Appointments** | Clinician discovery, matching, booking and appointment management |
+| **AI assistance** | Record-grounded patient and clinician Copilot |
+| **ML routing** | Specialty classification from care questions |
+| **Doctor matching** | Explainable clinician ranking score |
+| **Telehealth** | WebRTC consultation rooms with authenticated signalling |
+| **Connected care** | Streamed observations, monitoring state and alert surfaces |
+| **Clinical documentation** | SOAP-style notes and signed-note tracking |
+| **Laboratory workflows** | Orders, results and review surfaces |
+| **Medication workflows** | Medication records and prescribing-oriented interfaces |
+| **Referrals** | Referral creation, tracking and operational queues |
+| **Messaging** | Patient/clinician communication workspace |
+| **Interoperability** | FHIR R4-style resource endpoints |
+| **Authentication** | JWT sessions and Google Identity support |
+| **Authorization** | Patient, Doctor and Admin roles |
+| **Realtime systems** | WebSockets and WebRTC signalling |
+| **Governance** | Audit history, model registry and drift surfaces |
 
-## 1. Record-grounded Copilot
+---
 
-The Copilot retrieves information from the authenticated user's MediLink context before generating a response.
+# Intelligence layer
 
-Supported patient workflows include:
+MediLink does not route every healthcare problem through one language model.
 
-- explaining recent laboratory results
-- reviewing recorded medicines
-- preparing for an upcoming appointment
-- checking referrals
-- summarising available record context
-- suggesting relevant specialties
-- suggesting clinicians
-- continuing previous Copilot conversations
-- exposing record sources used for a response
+Different problems are handled by different components.
 
-The UI can show:
+```mermaid
+flowchart LR
+    USER["Patient question"]
 
-- answer
-- record sources
-- highlights
-- suggested next steps
-- suggested specialties
-- clinician matches
-- urgency state
-- model/provider metadata where configured
+    SAFETY{"Urgency screen"}
 
-This makes the experience more transparent than a generic standalone chatbot.
+    EMERGENCY["Emergency / urgent-care actions"]
 
-## 2. Specialty routing
+    CONTEXT["Authenticated record retrieval"]
 
-A dedicated ML routing layer can map a care question toward an appropriate specialty.
+    ROUTER["Specialty routing model"]
 
-The current test evaluation documented for the routing model uses synthetic/test examples and should **not** be interpreted as clinical validation.
+    MATCH["Clinician matching"]
+
+    LLM["Optional LLM generation"]
+
+    RESPONSE["Response
+    Sources
+    Suggested next steps
+    Specialty
+    Clinician matches"]
+
+    USER --> SAFETY
+
+    SAFETY -->|Urgent| EMERGENCY
+    SAFETY -->|Routine| CONTEXT
+
+    CONTEXT --> ROUTER
+    CONTEXT --> LLM
+
+    ROUTER --> MATCH
+
+    LLM --> RESPONSE
+    MATCH --> RESPONSE
+```
+
+This separation matters.
+
+Emergency escalation, information retrieval, specialty classification, clinician ranking and natural-language generation are not the same engineering problem and should not share the same level of authority.
+
+---
+
+## Record-grounded Copilot
+
+The Copilot is designed to retrieve information from the authenticated user's MediLink context before generating an answer.
+
+That context can include:
+
+```text
+Patient
+├── Appointments
+├── Medications
+├── Laboratory results
+├── Clinical timeline
+├── Referrals
+├── Monitoring observations
+├── Documents
+└── Previous MediLink conversations
+```
+
+Typical workflows include:
+
+- explaining recorded laboratory information
+- reviewing medication context
+- preparing a patient for an appointment
+- summarising relevant record history
+- reviewing referrals
+- identifying an appropriate clinical specialty
+- surfacing potential clinicians
+- continuing previous conversations with context
+
+A response can include more than generated text.
+
+```json
+{
+  "answer": "...",
+  "sources": [],
+  "highlights": [],
+  "next_steps": [],
+  "suggested_specialties": [],
+  "clinician_matches": [],
+  "urgency": "...",
+  "model_metadata": {}
+}
+```
+
+That distinction is intentional: **the system should be able to show what information informed the response.**
+
+---
+
+# Specialty routing model
+
+MediLink includes a dedicated text-classification pipeline for routing care questions to clinical specialties.
+
+### Pipeline
+
+```mermaid
+flowchart LR
+
+    Q["Care question"]
+    TF["TF-IDF vectorisation"]
+    LR["Logistic regression"]
+    CAL["Probability calibration"]
+    RANK["Ranked specialties"]
+
+    Q --> TF --> LR --> CAL --> RANK
+```
+
+The current model covers **10 specialties**.
+
+### Evaluation
 
 | Metric | Test result |
 |---|---:|
-| Accuracy | 93.85% |
-| Macro F1 | 93.98% |
-| Weighted F1 | 93.92% |
-| Top-2 accuracy | 95.38% |
-| Log loss | 0.5805 |
-| Test examples | 65 |
-| Specialties | 10 |
+| Accuracy | **93.85%** |
+| Macro F1 | **93.98%** |
+| Weighted F1 | **93.92%** |
+| Top-2 accuracy | **95.38%** |
+| Log loss | **0.5805** |
+| Test examples | **65** |
+| Specialties | **10** |
 
-## 3. Doctor matching
+These values are development metrics measured against synthetic/test examples.
 
-Doctor fit is presented as a **transparent /100 matching score** based on routing and available clinician attributes.
-
-It is **not a medical probability** and is not presented as a diagnosis.
-
-## 4. Safety boundary
-
-Urgent screening is kept separate from the generative layer. The AI is not responsible for deciding whether an ambulance should be called.
-
-Emergency actions are deterministic and user-controlled.
+They demonstrate the behaviour of the engineering pipeline; they are **not evidence of clinical performance**.
 
 ---
 
-# ⌚ MediLink Watch & Connected Care
+# Clinician matching
 
-MediLink includes a connected-health workspace for streamed observations such as:
+Specialty classification feeds a clinician-ranking layer.
 
-- heart rate
-- oxygen saturation
-- temperature
-- blood pressure
-- activity/steps
-- battery state
-- monitoring status
-- anomaly/threshold alerts
-
-The current project can generate or simulate observations through the backend for development and integration testing.
-
-> [!NOTE]
-> Generated values must not be represented as readings from a physical medical device. The current software demonstrates the **data pathway, UI, alerting and connected-care architecture** before real sensor integration.
-
-## Intended connected-device architecture
+Instead of presenting the result as an opaque prediction, MediLink generates a transparent fit score:
 
 ```text
-Wearable / Sensor
-       │
-       ├── BLE / Wi‑Fi
-       │
-       ▼
-Device Gateway
-       │
-       ├── MQTT / HTTPS / WebSocket
-       ▼
-MediLink API
-       │
-       ├── Observation storage
-       ├── Threshold / anomaly checks
-       └── Realtime updates
-       │
-       ▼
-Patient + Clinician dashboards
+Clinician Match
+─────────────────────────────
+Specialty alignment       +
+Availability              +
+Relevant attributes       +
+Platform ranking signals
+─────────────────────────────
+Fit Score                  /100
 ```
+
+The score is used for ranking.
+
+It is **not**:
+
+- a diagnosis
+- a clinical probability
+- a probability of successful treatment
+- a substitute for professional judgement
 
 ---
 
-# 🎥 Secure Telehealth
+# MediLink Watch
 
-MediLink includes a browser telehealth implementation using:
+MediLink Watch models the connected-health part of the platform.
 
-- authenticated care-room creation
-- room IDs and join codes
-- browser camera and microphone permissions
+The system can handle observations including:
+
+```text
+Heart rate
+SpO₂
+Temperature
+Blood pressure
+Activity / step count
+Device battery
+Monitoring state
+Threshold alerts
+Anomaly alerts
+```
+
+For development, the backend can generate observations to exercise the monitoring pipeline without requiring a physical sensor.
+
+Generated observations are kept conceptually separate from real device readings.
+
+### Intended device path
+
+```mermaid
+flowchart LR
+
+    SENSOR["Wearable / Sensor"]
+
+    GATEWAY["Device Gateway"]
+
+    INGEST["MediLink API"]
+
+    OBS[("Observation Store")]
+
+    CHECK["Threshold /
+    anomaly checks"]
+
+    RT["Realtime service"]
+
+    PATIENT["Patient dashboard"]
+
+    CLINICIAN["Clinician dashboard"]
+
+    SENSOR -->|"BLE / Wi-Fi"| GATEWAY
+    GATEWAY -->|"MQTT / HTTPS / WebSocket"| INGEST
+
+    INGEST --> OBS
+    INGEST --> CHECK
+    INGEST --> RT
+
+    OBS --> PATIENT
+    OBS --> CLINICIAN
+
+    CHECK --> PATIENT
+    CHECK --> CLINICIAN
+
+    RT --> PATIENT
+    RT --> CLINICIAN
+```
+
+The architecture is prepared for a future physical-device gateway without pretending that simulated development data originated from medical hardware.
+
+---
+
+# Telehealth
+
+MediLink includes browser-based consultation rooms using WebRTC.
+
+The implementation covers:
+
+- authenticated room creation
+- room identifiers
+- join codes
+- browser camera access
+- browser microphone access
 - WebRTC peer connections
+- SDP negotiation
+- ICE candidate exchange
 - authenticated WebSocket signalling
-- ICE/STUN negotiation
 - participant state
-- mute/unmute
-- camera on/off
+- microphone controls
+- camera controls
 - call termination
 
-Current STUN configuration includes Google's public STUN service.
+### Signalling flow
 
-For a production-grade deployment, a TURN service and stronger room-scoped policy controls would be required.
+```mermaid
+sequenceDiagram
 
-```text
-Browser A ───── encrypted WebRTC media ───── Browser B
-    │                                           │
-    └──── authenticated WebSocket signalling ───┘
-                         │
-                         ▼
-                    FastAPI API
+    participant Doctor
+    participant API as MediLink API
+    participant Patient
+
+    Doctor->>API: Create consultation room (JWT)
+    API-->>Doctor: Room ID + join code
+
+    Doctor->>API: Connect authenticated WebSocket
+    Patient->>API: Join room
+    Patient->>API: Connect authenticated WebSocket
+
+    Doctor->>API: SDP offer
+    API->>Patient: Relay SDP offer
+
+    Patient->>API: SDP answer
+    API->>Doctor: Relay SDP answer
+
+    Doctor->>API: ICE candidates
+    Patient->>API: ICE candidates
+
+    API->>Doctor: Relay candidates
+    API->>Patient: Relay candidates
+
+    Doctor-->>Patient: Encrypted WebRTC media
 ```
+
+The development configuration uses STUN-based connectivity.
+
+A hardened deployment would additionally require TURN infrastructure and stronger room-scoped authorization and lifecycle controls.
 
 ---
 
-# 🏥 Clinical Workflows
+# Clinical workflows
 
-MediLink goes beyond appointments and dashboards.
+MediLink extends beyond scheduling and video calls.
 
-The backend exposes foundations and/or workflows for:
+## Documentation
 
-### Clinical documentation
-- clinical notes
-- SOAP-style documentation
+```text
+Patient
+  ↓
+Consultation
+  ↓
+Clinical Note
+  ↓
+Review
+  ↓
+Signed Note
+```
+
+Supported concepts include:
+
+- SOAP-style notes
 - note review
 - signed-note tracking
 - clinical letters
 
-### Medication workflows
-- medication lists
-- prescribing workflows
-- medication interaction review
-- patient medication views
-
-### Laboratory workflows
-- lab orders
-- result review
-- patient result presentation
-- clinician worklists
-
-### Referrals
-- referral creation
-- referral queue
-- patient referral visibility
-- operational referral handling
-
-### Risk & care actions
-- care actions
-- risk stratification surfaces
-- clinical alerts
-- worklist prioritisation
-
----
-
-# 🏢 Hospital & Multi-Facility Operations
-
-The operations layer is designed for hospital-network coordination.
-
-Capabilities represented across the codebase include:
-
-- multi-facility operations
-- bed/capacity management
-- staff roster concepts
-- patient-flow monitoring
-- waiting-room activity
-- department load
-- open-slot visibility
-- referral queues
-- governance exports
-- audit history
-- platform-health views
-
----
-
-# 🔄 Interoperability & Platform Engineering
-
-MediLink includes a platform control surface and backend APIs for production-oriented architecture.
-
-Current engineering features include:
-
-- SQLAlchemy database layer
-- PostgreSQL-ready configuration
-- SQLite local fallback
-- Redis configuration with in-process fallback
-- background job API
-- object-storage abstraction
-- Alembic-ready migration workflow
-- FHIR R4-style resource endpoint
-- model registry
-- drift-monitoring surfaces
-- MQTT configuration
-- platform status endpoints
-
-Example FHIR-style endpoint:
+## Laboratory workflow
 
 ```text
+Clinician
+   ↓
+Lab Order
+   ↓
+Result
+   ↓
+Clinical Review
+   ↓
+Patient Record
+```
+
+## Medication workflow
+
+The platform contains interfaces and data structures for:
+
+- medication lists
+- prescribing-oriented workflows
+- medication review
+- patient medication views
+
+## Referral workflow
+
+```text
+Referral created
+      ↓
+Referral queue
+      ↓
+Operational handling
+      ↓
+Patient visibility
+```
+
+## Clinical worklists
+
+Clinicians can work against:
+
+- monitoring alerts
+- risk surfaces
+- care actions
+- patient queues
+- pending clinical work
+
+---
+
+# System architecture
+
+MediLink uses a service-oriented full-stack architecture rather than placing application logic entirely inside the frontend.
+
+```mermaid
+flowchart TB
+
+    subgraph CLIENT["Frontend — Next.js 16 / React / TypeScript"]
+        PAT["Patient workspace"]
+        DOC["Clinician workspace"]
+        ADM["Operations workspace"]
+        COP["Copilot"]
+        TEL["Telehealth"]
+        WATCH["MediLink Watch"]
+    end
+
+    subgraph BACKEND["Application API — FastAPI"]
+        AUTH["Authentication"]
+        CARE["Care workflows"]
+        CLIN["Clinical services"]
+        INTEL["AI / ML"]
+        IOT["Connected health"]
+        MSG["Messaging"]
+        OPS["Platform services"]
+    end
+
+    subgraph DATA["Persistence"]
+        DB[("SQLAlchemy
+        SQLite / PostgreSQL")]
+        OBJ["Document / object storage"]
+    end
+
+    subgraph AI["Intelligence"]
+        RET["Record retrieval"]
+        ROUTER["Specialty router"]
+        PROVIDER["LLM provider layer"]
+        REGISTRY["Model registry"]
+        DRIFT["Drift surfaces"]
+    end
+
+    subgraph REALTIME["Realtime"]
+        WS["WebSockets"]
+        SIGNAL["WebRTC signalling"]
+        MQTT["MQTT-ready integration"]
+    end
+
+    CLIENT -->|"HTTPS / WebSocket"| BACKEND
+
+    BACKEND --> DATA
+    BACKEND --> AI
+    BACKEND --> REALTIME
+```
+
+---
+
+# Technology
+
+### Frontend
+
+```text
+Next.js 16
+React
+TypeScript
+Lucide React
+WebRTC browser APIs
+WebSocket browser APIs
+Responsive application UI
+```
+
+### Backend
+
+```text
+Python
+FastAPI
+Pydantic
+SQLAlchemy
+JWT authentication
+Google Identity verification
+WebSockets
+Document/PDF processing
+Background-job interfaces
+```
+
+### Machine learning
+
+```text
+TF-IDF
+Logistic Regression
+Probability calibration
+Record-grounded retrieval
+Clinician-ranking logic
+Model registry
+Drift/governance surfaces
+Optional LLM provider abstraction
+```
+
+### Infrastructure
+
+```text
+Vercel
+Render
+Docker
+Docker Compose
+PostgreSQL-ready persistence
+Redis-ready services
+MQTT-ready device integration
+```
+
+---
+
+# Data and platform layer
+
+The persistence layer is built on SQLAlchemy, allowing local development against SQLite while keeping the data model compatible with PostgreSQL-oriented deployment.
+
+The wider platform design includes:
+
+- SQLAlchemy persistence
+- PostgreSQL configuration
+- SQLite development fallback
+- Redis configuration
+- in-process fallback behaviour
+- background-job interfaces
+- object-storage abstraction
+- migration-ready structure
+- model registry
+- model drift surfaces
+- platform-health endpoints
+
+---
+
+# Interoperability
+
+MediLink includes a FHIR R4-style patient resource endpoint.
+
+```http
 GET /api/v1/fhir/Patient/{patient_id}
 ```
 
+This is the starting point for a wider interoperability layer.
+
+Planned expansion includes:
+
+```text
+Patient
+Observation
+Medication
+DiagnosticReport
+Appointment
+Practitioner
+Encounter
+Referral / ServiceRequest
+```
+
+The project does not claim full FHIR conformance at its current stage.
+
 ---
 
-# 🔐 Authentication & Access Control
+# Authentication and authorization
 
-MediLink currently supports:
+MediLink supports both traditional authentication and external identity foundations.
+
+```mermaid
+flowchart TD
+
+    AUTH["MediLink Authentication"]
+
+    AUTH --> PATIENT["Patient
+    Records
+    Copilot
+    Monitoring
+    Telehealth"]
+
+    AUTH --> DOCTOR["Doctor
+    Patient queues
+    Clinical records
+    Notes
+    Monitoring
+    Care actions"]
+
+    AUTH --> ADMIN["Admin
+    Operations
+    Capacity
+    Governance
+    Platform controls"]
+```
+
+Current authentication features include:
 
 - email/password registration
 - password hashing
-- JWT sessions
-- role-aware dashboards
-- protected routes
-- Patient / Doctor / Admin roles
+- JWT access sessions
+- protected API routes
 - Google Identity token verification
-- external identity linking foundation
+- external identity-linking foundation
+- role-based application access
 
-Admin accounts cannot be self-registered through the standard registration endpoint.
-
-## Role model
-
-```text
-                 ┌─────────────┐
-                 │   MediLink  │
-                 │    Auth     │
-                 └──────┬──────┘
-                        │
-       ┌────────────────┼────────────────┐
-       │                │                │
-       ▼                ▼                ▼
-   Patient           Doctor           Admin
-       │                │                │
- Personal care    Clinical care    Operations
- Records          Patient queue    Capacity
- Copilot          Monitoring       Governance
- Telehealth       Notes/actions    Platform
-```
+The standard registration endpoint does **not** permit self-registration as an administrator.
 
 ---
 
-# 🏗️ System Architecture
+# Security model
 
-```text
-┌───────────────────────────────────────────────────────────────┐
-│                        CLIENT LAYER                           │
-│                                                               │
-│  Next.js 16 / React                                          │
-│  Patient UI · Doctor UI · Admin UI · Copilot · Telehealth    │
-└───────────────────────────────┬───────────────────────────────┘
-                                │ HTTPS / WebSocket
-                                ▼
-┌───────────────────────────────────────────────────────────────┐
-│                         API LAYER                             │
-│                                                               │
-│                         FastAPI                               │
-│                                                               │
-│ Auth │ Care │ Clinical │ AI │ IoT │ Messaging │ Platform     │
-└───────────────┬───────────────────────┬───────────────────────┘
-                │                       │
-                ▼                       ▼
-      ┌──────────────────┐    ┌────────────────────────┐
-      │ Persistence      │    │ Intelligence           │
-      │ SQLAlchemy       │    │ Record retrieval       │
-      │ SQLite / PG      │    │ Specialty routing      │
-      │ Documents        │    │ LLM provider layer     │
-      └──────────────────┘    │ Model registry         │
-                              └────────────────────────┘
-                │
-                ▼
-      ┌──────────────────┐
-      │ Realtime / IoT   │
-      │ WebSockets       │
-      │ WebRTC signalling│
-      │ MQTT-ready       │
-      └──────────────────┘
-```
+Security work is separated into what exists today and what a real healthcare deployment would still require.
+
+| Implemented | Production hardening |
+|---|---|
+| Password hashing | Formal threat modelling |
+| JWT authentication | Penetration testing |
+| Role-protected routes | Managed key infrastructure |
+| Authenticated API endpoints | Formal data-retention policy |
+| Google token verification | Periodic access reviews |
+| Protected consultation-room creation | Regulatory assessment |
+| Authenticated WebSocket signalling | Independent security validation |
+| Audit-history support | Full security monitoring |
+| Explicit origin configuration | Production secrets infrastructure |
+| Backend-only secret storage | Incident-response processes |
 
 ---
 
-# 🧰 Technology Stack
+# Healthcare safety boundaries
 
-### Frontend
-- Next.js 16
-- React
-- TypeScript
-- Lucide React
-- responsive custom UI
-- browser WebRTC APIs
-- browser WebSocket APIs
+MediLink is a software engineering project, not a certified medical system.
 
-### Backend
-- Python
-- FastAPI
-- Pydantic
-- SQLAlchemy
-- JWT authentication
-- Google Identity verification
-- WebSocket endpoints
-- PDF/document processing
-- background-job interfaces
+The application follows several design boundaries.
 
-### AI / ML
-- record-grounded retrieval
-- TF-IDF retrieval/routing components
-- logistic-regression specialty routing
-- calibration
-- optional LLM provider layer
-- model registry
-- drift/governance surfaces
+### 1. AI is advisory
 
-### Infrastructure
-- Vercel — frontend
-- Render — API
-- Docker / Docker Compose
-- PostgreSQL-ready configuration
-- Redis-ready configuration
-- MQTT-ready configuration
+Generated responses assist users with navigating information. They do not replace clinicians.
+
+### 2. Emergency handling is outside the LLM
+
+Urgent escalation is handled separately from generative output.
+
+For UK-oriented flows, the interface can direct users toward:
+
+- **999** for emergencies
+- **NHS 111** for urgent medical advice
+
+### 3. Routing scores are not diagnoses
+
+Specialty routing and clinician ranking are navigation mechanisms.
+
+### 4. Development metrics are labelled as development metrics
+
+Machine-learning evaluation results are not presented as clinical validation.
+
+### 5. Synthetic device observations remain synthetic
+
+Simulated monitoring data must never be represented as data captured from physical medical hardware.
+
+### 6. Record information and generated information remain distinguishable
+
+The architecture is designed to preserve provenance wherever practical.
+
+### 7. Emergency actions remain explicit
+
+The system does not silently initiate emergency decisions through an LLM.
+
+> **MediLink AI has not undergone clinical validation or medical-device certification and must not be used for real-world diagnosis, treatment or emergency decision-making.**
 
 ---
 
-# 🌍 Live Deployment
+# Deployment
 
-| Service | URL | Purpose |
+The application is currently split across two deployed services.
+
+| Component | Deployment | URL |
 |---|---|---|
-| **Frontend** | https://medilink-ai-eight.vercel.app | Production Next.js application |
-| **Backend** | https://medilink-ai-api.onrender.com | FastAPI service |
-| **API docs** | https://medilink-ai-api.onrender.com/docs | OpenAPI / Swagger documentation |
+| Frontend | Vercel | https://medilink-ai-eight.vercel.app |
+| API | Render | https://medilink-ai-api.onrender.com |
+| OpenAPI documentation | Render | https://medilink-ai-api.onrender.com/docs |
 
-The production frontend reads the backend URL from:
-
-```env
-NEXT_PUBLIC_API_URL=https://medilink-ai-api.onrender.com
-```
+The Render service may cold-start on lower-tier hosting, so the first request can take longer than subsequent requests.
 
 ---
 
-# 🚀 Run Locally
+# Running locally
 
-## 1. Clone
+## Requirements
+
+Install:
+
+```text
+Python 3.11+
+Node.js 18+
+Git
+```
+
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/Edgar-50/medilink-ai.git
 cd medilink-ai
 ```
 
-## 2. Backend
+## 2. Start the backend
 
-Windows PowerShell:
+### Windows / PowerShell
 
 ```powershell
 cd backend
+
 python -m venv .venv
+
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
@@ -524,17 +845,19 @@ Create:
 backend/.env
 ```
 
-Example development configuration:
+Example:
 
 ```env
 DATABASE_URL=sqlite:///./medilink.db
 SECRET_KEY=replace-with-a-secure-random-secret
 ACCESS_TOKEN_EXPIRE_MINUTES=60
+
 FRONTEND_ORIGIN=http://localhost:3000
+
 GOOGLE_CLIENT_ID=your-google-client-id
 ```
 
-Run:
+Start FastAPI:
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --reload-dir app
@@ -546,18 +869,19 @@ Backend:
 http://127.0.0.1:8000
 ```
 
-Docs:
+OpenAPI:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-## 3. Frontend
+## 3. Start the frontend
+
+Open another terminal:
 
 ```powershell
 cd frontend
 npm.cmd install
-npm.cmd run dev
 ```
 
 Create:
@@ -566,9 +890,17 @@ Create:
 frontend/.env.local
 ```
 
+Example:
+
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id
+```
+
+Run:
+
+```powershell
+npm.cmd run dev
 ```
 
 Open:
@@ -579,59 +911,68 @@ http://localhost:3000
 
 ---
 
-# 🐳 Docker
+# Optional LLM configuration
 
-The repository includes Docker-oriented infrastructure for running platform dependencies.
-
-Typical development flow:
-
-```bash
-docker compose up --build
-```
-
-Depending on the selected compose stack, services can include:
-
-- API
-- PostgreSQL
-- Redis
-- MQTT
-
----
-
-# 🔑 Optional LLM Configuration
-
-LLM credentials belong **only on the backend**.
-
-Example:
+LLM credentials belong on the backend only.
 
 ```env
 LLM_PROVIDER=openai
 OPENAI_API_KEY=your-secret-key
 OPENAI_MODEL=your-enabled-model
+
 LLM_ALLOW_RECORD_CONTEXT=true
 LLM_TIMEOUT_SECONDS=30
 ```
 
-Never commit keys to GitHub and never expose them through `NEXT_PUBLIC_*` variables.
+Do not expose provider secrets through variables beginning with:
 
-If no configured LLM provider is available, the application is designed to preserve deterministic/record-grounded fallbacks where implemented.
+```text
+NEXT_PUBLIC_
+```
+
+If no provider is configured, portions of MediLink can use deterministic or record-grounded fallback behaviour where implemented.
 
 ---
 
-# 📂 Repository Structure
+# Docker
+
+A Docker-based development environment is also available.
+
+```bash
+docker compose up --build
+```
+
+Depending on the selected Compose configuration, the stack can include:
+
+```text
+MediLink API
+PostgreSQL
+Redis
+MQTT
+```
+
+---
+
+# Repository structure
 
 ```text
 medilink-ai/
 │
 ├── backend/
 │   ├── app/
-│   │   ├── core/           # config, database, security
-│   │   ├── models/         # persistence models
-│   │   ├── routers/        # API modules
-│   │   ├── schemas/        # request / response schemas
-│   │   └── services/       # supporting logic
+│   │   ├── core/
+│   │   │   ├── configuration
+│   │   │   ├── database
+│   │   │   └── security
+│   │   │
+│   │   ├── models/
+│   │   ├── routers/
+│   │   ├── schemas/
+│   │   └── services/
+│   │
 │   ├── ml/
 │   │   └── artifacts/
+│   │
 │   ├── storage/
 │   ├── requirements.txt
 │   └── .env.example
@@ -642,19 +983,20 @@ medilink-ai/
 │   │   │   ├── patient/
 │   │   │   ├── doctor/
 │   │   │   └── admin/
+│   │   │
 │   │   ├── copilot/
 │   │   ├── video/
 │   │   ├── watch/
 │   │   ├── records/
 │   │   ├── labs/
-│   │   ├── medications/
-│   │   └── ...
+│   │   └── medications/
+│   │
 │   ├── components/
 │   └── lib/
 │
 ├── docs/
 │   ├── screenshots/
-│   └── architecture / roadmap notes
+│   └── architecture/
 │
 ├── docker-compose*.yml
 └── README.md
@@ -662,141 +1004,220 @@ medilink-ai/
 
 ---
 
-# 🛡️ Security Design
+# Engineering status
 
-Security-related engineering represented in the current project includes:
-
-- password hashing
-- JWT-based sessions
-- role-based route protection
-- authenticated backend endpoints
-- Google token verification
-- protected care-room creation
-- authenticated WebSocket signalling
-- browser-controlled camera/microphone access
-- audit-history support
-- explicit frontend/backend origin configuration
-- server-side secret storage
-
-For a real healthcare deployment, additional requirements would include formal threat modelling, penetration testing, key-management infrastructure, data-retention policy, access reviews, regulatory assessment and independently validated security controls.
-
----
-
-# ⚠️ Healthcare & AI Safety
-
-MediLink intentionally avoids presenting its AI layer as autonomous medical authority.
-
-### The project is designed around these rules:
-
-1. **AI supports decisions — it does not replace clinicians.**
-2. **Urgent escalation remains deterministic rather than LLM-driven.**
-3. **Doctor match scores are ranking signals, not probabilities of medical correctness.**
-4. **Model metrics are engineering/test metrics, not clinical-performance claims.**
-5. **Generated wearable values must not be represented as physical sensor measurements.**
-6. **Record-grounded answers should distinguish stored patient facts from general information.**
-7. **Emergency actions stay explicit and user-controlled.**
-
-For UK-oriented emergency flows, the interface directs users toward **999** for emergencies and **NHS 111** for urgent advice where appropriate.
+| System | Status |
+|---|:---:|
+| Next.js production frontend | ✅ |
+| FastAPI API | ✅ |
+| Patient dashboard | ✅ |
+| Clinician dashboard | ✅ |
+| Operations dashboard | ✅ |
+| Email/password authentication | ✅ |
+| Google sign-in | ✅ |
+| Role-based access | ✅ |
+| Appointment workflows | ✅ |
+| Record-grounded Copilot | ✅ |
+| Specialty routing model | ✅ |
+| Clinician matching | ✅ |
+| WebRTC consultation rooms | ✅ |
+| Authenticated WebSocket signalling | ✅ |
+| Connected-health dashboard | ✅ |
+| Messaging workflows | ✅ |
+| Clinical workflow surfaces | ✅ |
+| Platform administration | ✅ |
+| FHIR-style Patient endpoint | ✅ |
+| Production TURN infrastructure | Planned |
+| Physical wearable integration | Planned |
+| Formal clinical validation | Not performed |
+| Medical-device certification | Not claimed |
 
 ---
 
-# 🧪 Current Engineering Status
+# Roadmap
 
-| Area | Status |
-|---|---|
-| Next.js production frontend | ✅ Deployed |
-| FastAPI backend | ✅ Deployed |
-| Patient dashboard | ✅ Implemented |
-| Doctor dashboard | ✅ Implemented |
-| Admin dashboard | ✅ Implemented |
-| Email/password auth | ✅ Implemented |
-| Google sign-in | ✅ Implemented |
-| Appointment workflows | ✅ Implemented |
-| Record-grounded Copilot | ✅ Implemented |
-| Specialty routing | ✅ Implemented |
-| WebRTC consultation rooms | ✅ Implemented |
-| Authenticated signalling | ✅ Implemented |
-| Connected-health dashboard | ✅ Implemented |
-| Messaging / care workflows | ✅ Implemented |
-| Platform control surfaces | ✅ Implemented |
-| FHIR-style Patient endpoint | ✅ Implemented |
-| Production TURN infrastructure | ⏳ Future hardening |
-| Physical wearable integration | ⏳ Future integration |
-| Formal clinical validation | ❌ Not performed |
-| Medical-device certification | ❌ Not claimed |
+## Platform
 
----
-
-# 🗺️ Roadmap
-
-### Near-term engineering
-- persistent PostgreSQL production data
-- migration hardening
-- Redis-backed distributed services
+- production PostgreSQL persistence
+- hardened migrations
+- Redis-backed distributed state
 - durable object storage
-- production TURN infrastructure
-- stronger room-level telehealth authorization
-- real sensor gateway integration
-- expanded audit and consent policies
+- stronger observability
+- structured audit events
+- production secrets management
 
-### Intelligence
-- richer record retrieval
-- stronger citation traceability
-- clinician-configurable safety rules
+## Telehealth
+
+- TURN infrastructure
+- room-scoped authorization
+- consultation lifecycle policies
+- reconnection handling
+- session telemetry
+
+## Connected health
+
+- real sensor gateway
+- BLE ingestion
+- MQTT device pipeline
+- device identity
+- device-health monitoring
+- configurable clinical thresholds
+
+## Intelligence
+
+- richer clinical-context retrieval
+- improved source traceability
+- structured clinical summarisation
+- evaluation pipelines
 - model-version comparison
 - drift dashboards
-- evaluation pipelines
-- structured clinical summarisation
+- clinician-configurable safety rules
 
-### Interoperability
-- expand FHIR-style resources beyond Patient
+## Interoperability
+
+- additional FHIR-style resources
 - terminology mappings
-- import/export workflows
-- external EHR integration adapters
+- structured import/export
+- external EHR adapters
+
+## Security
+
+- formal threat model
+- penetration testing
+- managed keys
+- access-review workflows
+- audit retention
+- security-event monitoring
 
 ---
 
-# 🤝 Contributing
+# Design principles
 
-This repository is primarily a personal engineering project, but structured contributions, issues and architecture suggestions are welcome.
+Several rules guide the project.
 
-Good contribution areas include:
+```text
+Clinical context > isolated features
 
-- accessibility
-- testing
-- UI/UX
+Retrieval before generation
+
+Deterministic safety > generative safety
+
+Explainable ranking > opaque scoring
+
+Role-specific interfaces > one dashboard for everyone
+
+Realtime state > manual refresh
+
+Interoperability > closed data models
+
+Auditability > invisible automation
+
+Explicit limitations > inflated claims
+```
+
+---
+
+# Why I built it
+
+MediLink is primarily an engineering study in how several difficult software domains interact inside one product:
+
+- full-stack web engineering
+- healthcare workflow modelling
+- authentication and authorization
+- relational data modelling
+- machine learning
+- LLM orchestration
+- realtime communication
+- WebRTC
+- WebSockets
+- IoT architecture
 - interoperability
-- observability
-- security hardening
-- realtime reliability
-- clinical workflow modelling
-- ML evaluation tooling
+- security
+- cloud deployment
+- operational monitoring
+
+The interesting part of the project is not any single feature.
+
+It is the integration boundary between them.
+
+A telehealth room becomes more useful when it understands the appointment that created it.
+
+A monitoring alert becomes more useful when the clinician can immediately reach the patient's record.
+
+An AI assistant becomes safer when it can distinguish stored facts from generated information.
+
+A clinician recommendation becomes more trustworthy when its ranking logic is explicit.
+
+That is the system MediLink is designed to explore.
 
 ---
 
-# 👨‍💻 Engineering Focus
+# Project boundaries
 
-MediLink AI is built to demonstrate how modern software architecture can connect:
+MediLink deliberately distinguishes between:
 
-**full-stack engineering + healthcare workflows + ML + LLM orchestration + realtime systems + IoT + platform operations**
+| Engineering concept | Not equivalent to |
+|---|---|
+| Prototype | Production healthcare system |
+| Synthetic observations | Medical-device measurements |
+| ML test performance | Clinical evidence |
+| Clinician ranking | Treatment recommendation |
+| AI assistance | Clinical judgement |
+| FHIR-style endpoint | Certified FHIR implementation |
+| Security controls | Regulatory compliance |
+| Working telehealth prototype | Production telemedicine infrastructure |
 
-without hiding the distinction between:
+Keeping these boundaries explicit is part of the engineering design.
 
-- prototype vs production
-- generated data vs sensor data
-- test metrics vs clinical evidence
-- AI assistance vs clinical judgment
+---
+
+# Contributing
+
+MediLink is primarily a personal engineering project, but technical feedback and structured contributions are welcome.
+
+Areas particularly worth exploring include:
+
+```text
+Accessibility
+Automated testing
+Clinical workflow modelling
+FHIR interoperability
+Observability
+Security hardening
+Realtime reliability
+WebRTC resilience
+ML evaluation
+Model monitoring
+Device integration
+UI / UX
+```
+
+Issues and architecture discussions are welcome through the repository.
+
+---
+
+# Author
+
+**Edgar Charles Omondi**
+
+Computer Science · Full-Stack Engineering · AI/ML · Distributed & Realtime Systems
+
+GitHub: [@Edgar-50](https://github.com/Edgar-50)
 
 ---
 
 <div align="center">
 
-### MediLink AI
+## MediLink AI
 
-**Care. Anywhere. Always.**
+**One clinical context. Multiple care workflows.**
 
-Built as a connected-health engineering platform.
+[Open MediLink](https://medilink-ai-eight.vercel.app) · [Explore the API](https://medilink-ai-api.onrender.com/docs) · [View Repository](https://github.com/Edgar-50/medilink-ai)
 
-[Open the live application](https://medilink-ai-eight.vercel.app) · [Explore the API](https://medilink-ai-api.onrender.com/docs)
+<br />
+
+<sub>
+Engineering portfolio project · Synthetic/test data · Not a clinically validated medical device
+</sub>
 
 </div>
