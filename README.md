@@ -66,6 +66,12 @@ The patient application acts as the central point for managing care.
 
 ![Patient dashboard](docs/screenshots/patient-dashboard.svg)
 
+### Full patient dashboard
+
+The complete patient workspace brings together live vitals, appointments, lab results, care-team access, MediLink Watch, AI assistance, telehealth and emergency controls in a single interface.
+
+<img src="docs/screenshots/medilink-patient-dashboard-full.webp" alt="MediLink AI full patient telemedicine dashboard" width="100%">
+
 Patients can access:
 
 - upcoming appointments
