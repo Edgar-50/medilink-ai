@@ -1,9 +1,5 @@
 <div align="center">
 
-<img src="docs/screenshots/medilink-patient-dashboard-full.webp" alt="MediLink AI full patient telemedicine dashboard" width="100%">
-
-<br />
-
 # MediLink AI
 
 ### Healthcare systems engineering across clinical workflows, AI, telehealth and remote monitoring.
